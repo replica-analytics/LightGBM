@@ -29,10 +29,10 @@ jobs:
 #            python_version: 3.9
           - os: macOS-latest
             task: bdist
-            python_version: 3.8
+            python_version: 3.11
           - os: macOS-latest
             task: if-else
-            python_version: 3.8
+            python_version: 3.11
 #          - os: macOS-latest
 #            task: mpi
 #            method: source
@@ -70,6 +70,12 @@ jobs:
           export PATH=${CONDA}/bin:${PATH}
           $GITHUB_WORKSPACE/.ci/setup.sh || exit -1
           $GITHUB_WORKSPACE/.ci/test.sh || exit -1
+      - name: upload wheels
+        if: ${{ matrix.method == 'wheel' && matrix.os == 'macOS-latest' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: macosx-arm64-wheel
+          path: dist/*.whl
 #  all-successful:
 #    # https://github.community/t/is-it-possible-to-require-all-github-actions-tasks-to-pass-without-enumerating-them/117957/4?u=graingert
 #    runs-on: ubuntu-latest
