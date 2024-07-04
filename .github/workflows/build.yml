@@ -1,4 +1,4 @@
-name: synthesis-engine build workflow
+name: lightgbm build workflow
 
 on:
   push:
@@ -40,5 +40,6 @@ jobs:
 
       - name: Build MacOS wheel
         run: |
+          cd python-package
           python -m cibuildwheel --output-dir dist
           ls -al dist
