@@ -30,10 +30,10 @@ jobs:
           - os: macOS-latest
             task: bdist
             method: wheel
-            python_version: 3.8
+            python_version: 3.11
           - os: macOS-latest
             task: if-else
-            python_version: 3.8
+            python_version: 3.11
 #          - os: macOS-latest
 #            task: mpi
 #            method: source
